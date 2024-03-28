@@ -17,7 +17,11 @@ def send_daily_menu():
     for meal in meals:
         reply_msg += f'{meal}\n'
     reply_msg += '\n請記得點餐!'
-    line_bot_api.broadcast(TextSendMessage(text=reply_msg))
+    #
+    ordered_list = get_ordered_list()
+    for person in Person.objects.all():
+        if person.name not in ordered_list:
+            line_bot_api.broadcast(TextSendMessage(text=reply_msg))
 
 
 @shared_task

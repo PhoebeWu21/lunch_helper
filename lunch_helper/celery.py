@@ -25,7 +25,7 @@ def debug_task(self):
 app.conf.beat_schedule = {
     'broadcast-daily-menu': {
         'task': 'notifier.tasks.send_daily_menu',
-        'schedule': crontab(hour=8, minute=30),
+        'schedule': crontab(hour=8, minute=30, day_of_week='mon,tue,wed,thu,fri'),
     },
     'notify-check-order': {
         'task': 'notifier.tasks.send_order_notify',
