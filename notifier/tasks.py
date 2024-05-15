@@ -21,7 +21,7 @@ def send_daily_menu():
     ordered_list = get_ordered_list()
     for person in Person.objects.all():
         if person.name not in ordered_list:
-            line_bot_api.broadcast(TextSendMessage(text=reply_msg))
+            line_bot_api.push_message(person.line_user_id, TextSendMessage(text=reply_msg))
 
 
 @shared_task

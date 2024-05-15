@@ -25,16 +25,18 @@ services:
     image: postgres:14-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5436:5432"
     environment:
       - POSTGRES_DB=${SQL_DATABASE}
-      - POSTGRES_USER=${SQL_USER}
-      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_USER=phoebe
+      - POSTGRES_PASSWORD=phoebe
 
   pgadmin:
     image: dpage/pgadmin4:latest
     environment:
-      PGADMIN_DEFAULT_EMAIL: jason890088@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: ${SQL_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: phoebe.wc.wu@foxconn.com
+      PGADMIN_DEFAULT_PASSWORD: phoebe
       PGADMIN_LISTEN_PORT: 80
     ports:
       - "8081:80"
